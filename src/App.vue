@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    
-    11111
-    <router-view/>
+    <JsScroll></JsScroll>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import JsScroll from './lib/index.js'
+Vue.use(JsScroll)
 export default {
-  name: 'App'
+  name: 'App',
 }
 </script>
 
