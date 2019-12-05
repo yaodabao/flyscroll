@@ -1,18 +1,28 @@
 # flyscroll
 
-> A Vue.js project
+> 一款自定义滚动条插件
 
 ## Build Setup
 
+1.使用方式
+
 ``` bash
-# install dependencies
-npm install
+# 安装依赖
+npm install flyscroll --save
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 卸载依赖
+# npm uninstall flyscroll
 
-# build for production with minification
-npm run build
+# main.js 使用方式
+import FlyScroll from "flyscroll"
+Vue.use(FlyScroll);
+
+# *.vue 使用方式
+<FlyScroll></FlyScroll>
+
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+2.版本说明
+
+2019-12-05 - v1.0.6：
+完成一个完整的插件开发流程，并且成功应用于项目，接下来就是插件核心内容的开发过程，敬请期待....

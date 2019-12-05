@@ -1,10 +1,11 @@
 {
   "name": "flyscroll",
-  "description": "A Vue.js project",
-  "version": "1.0.0",
+  "description": "一款自定义滚动条插件。",
+  "version": "1.0.6",
   "author": "yaolongfei <609560592@qq.com>",
   "license": "MIT",
   "private": false,
+  "main": "./src/lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/yaodabao/flyscroll.git"
