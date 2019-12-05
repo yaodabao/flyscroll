@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    11111111111111111
+    第一个插件1111
   </div>
 </template>
 
 <script>
 export default {
-  name: 'JsScroll'
+  name: 'FlyScroll'
 }
 </script>
 

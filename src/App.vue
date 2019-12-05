@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <JsScroll></JsScroll>
+    <FlyScroll></FlyScroll>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import JsScroll from './lib/index.js'
-Vue.use(JsScroll)
+import FlyScroll from './lib/index.js'
+Vue.use(FlyScroll)
 export default {
   name: 'App',
 }

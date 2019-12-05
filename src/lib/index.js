@@ -1,4 +1,4 @@
-import JsScroll from './JsScroll.vue'
+import FlyScroll from './FlyScroll.vue'
 let scroll = {}
 
 scroll.install = function (Vue, options) {
@@ -6,6 +6,6 @@ scroll.install = function (Vue, options) {
   Vue.prototype.$myMethod = function (arr) {
     console.log(arr)
   }
-  Vue.component(JsScroll.name, JsScroll)
+  Vue.component(FlyScroll.name, FlyScroll)
 }
 export default scroll
