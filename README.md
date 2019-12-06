@@ -1,6 +1,6 @@
 # flyscroll
 
-> 一款自定义滚动条插件
+> 一款自定义滚动条组件
 
 ## Build Setup
 
@@ -9,9 +9,6 @@
 ``` bash
 # 安装依赖
 npm install flyscroll --save
-
-# 卸载依赖
-# npm uninstall flyscroll
 
 # main.js 使用方式
 import FlyScroll from "flyscroll"
@@ -25,9 +22,9 @@ Vue.use(FlyScroll);
 
 ```js
 vOption:{
-  width: "100%",            //宽度
-  height: "100px",          //高度
-  barWidth:"0px",           //滚动条的宽度 必填
+  width: "100%",            //滚动区域 - 可视宽度
+  height: "300px",          //滚动区域 - 可视高度
+  barWidth:"2px",           //滚动条的宽度 必填 建议：2~4个像素
   barColor:"#666",          //滚动条颜色
   railColor:"#eee",         //导轨颜色
   barMargin:"0px",          //垂直滚动条距离整个容器右侧距离
@@ -38,7 +35,7 @@ vOption:{
 
 2.版本说明
 
-2019-12-06 - v1.1.1：
+2019-12-06 - v1.1.2：
 修复无法使用问题。
 
 2019-12-06 - v1.1.0：

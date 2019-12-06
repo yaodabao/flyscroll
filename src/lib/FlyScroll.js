@@ -4,8 +4,8 @@ export default {
   data () {
     return {
       flyStyle:{
-        width: "100%",            //宽度
-        height: "100px",          //高度
+        width: "100%",            //滚动区域 - 可视宽度
+        height: "300px",          //滚动区域 - 可视高度
         barWidth:"0px",           //滚动条的宽度 必填
         barColor:"#666",          //滚动条颜色
         railColor:"#eee",         //导轨颜色
