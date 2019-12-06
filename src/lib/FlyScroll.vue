@@ -1,14 +1,60 @@
 <template>
-  <div id="app">
-    第一个插件1111
+  <div class="fly-flyscroll"
+    :style="'width:' + flyStyle.width +
+          '; height:' + flyStyle.height"
+    @mousewheel="flyScroll"
+  >
+
+    <!-- 纵向滚动 -->
+    <div class="fly-bar" :class="flyStyle.type == 'vertical'?'vertical':'horizontal'"
+        :style="
+          flyStyle.type == 'vertical'?(
+            'width:' + flyStyle.barWidth +
+            '; background-color:' + flyStyle.railColor +
+            ';right:' + flyStyle.barMarginRight
+          ):(
+            'width:' + flyStyle.width +
+            ';height:' + flyStyle.barWidth +
+            ';background-color:' + flyStyle.railColor +
+            ';bottom:' + flyStyle.barMarginRight
+          )"
+      >
+
+      <div class="fly-bar-scrollBut"
+         :style="
+         flyStyle.type == 'vertical'?(
+           'width:' + flyStyle.barWidth +
+           '; height:' + barH +
+           'px; background-color:' + flyStyle.barColor
+         ):(
+           'height:' + flyStyle.barWidth +
+           '; width:' + barH +
+           'px; background-color:' + flyStyle.barColor
+         )"
+         ref="fly_barHtml">
+      </div>
+
+    </div>
+
+    <div class="fly-conHtml"
+      :style="flyStyle.type == 'vertical'?(
+            'width: calc(100% - '+flyStyle.barWidth+')'
+          ):(
+            'width: 100%'+
+            ';height: calc('+flyStyle.height+' - '+flyStyle.barWidth+')'
+          )"
+      ref="fly_conBox">
+      <slot></slot>
+    </div>
+
   </div>
 </template>
 
 <script>
-export default {
-  name: 'FlyScroll'
-}
+import frame from './FlyScroll'
+export default frame
 </script>
 
-<style>
+<style scoped>
+  @import "./FlyScroll.css";
 </style>
