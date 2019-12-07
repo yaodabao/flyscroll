@@ -28,6 +28,9 @@ export default {
       barMoveNum: 0,              //滚动条的移动一次的距离;
       barMoveH: 0,                //滚动条的移动的高度;
 
+      initTag: false,             //动画效果计时器是否开启
+      animationTimeTag: false,    //动画效果计时器是否开启
+
 
     }
   },
@@ -38,28 +41,45 @@ export default {
     this.init();
   },
   created(){
+    //初始化新增监听
+    var _this = this;
+    window.onresize = function(){
+      // _this.$nextTick(()=>{
+      // });
+      _this.init();
+
+    }
   },
   methods:{
     //初始化
     init() {
-      //初始 - 滚动插件的配置参数
-      this.initStyle();
+      if(!this.initTag){
+        //初始 - 滚动插件的配置参数
+        this.initStyle();
+      }
+      this.initTag = true;
 
 
       //初始 - 计算
       this.dom = this.$refs.fly_conBox;
       this.barDom = this.$refs.fly_barHtml;
 
+        console.log(this.flyStyle.type)
       if(this.flyStyle.type == "vertical"){
         // console.log(this.barDom.style)
         this.domH = this.dom.offsetHeight;
         // console.log(this.domH)
 
         //计算 - 滚动条的高
+        //计算 - 数值为100% - 处理
         this.h = this.flyStyle.height;
-        this.h = Number(this.h.substring(0, this.h.length - 2));
+        if(this.h.indexOf("%") >= 0){
+          this.h = document.documentElement.clientHeight * Number(this.h.replace(/%/g,"")) / 100;
+        }else if(this.h.indexOf("px") >= 0){
+          this.h = Number(this.h.substring(0, this.h.length - 2));
+        }
         this.barH = this.h / this.domH * this.h;
-        this.barMoveNum = this.barH * 0.1;
+        this.barMoveNum = this.barH * 0.5;
 
         //计算 - dom可以移动的高度
         this.allh = this.domH - this.h;
@@ -69,7 +89,9 @@ export default {
       }else{
 
         this.domW = this.dom.offsetWidth;
-        this.flyStyle.hWidth = Number(this.flyStyle.hWidth.replace(/px/g,""));
+        if(this.flyStyle.hWidth.toString().indexOf("px") > -1){
+          this.flyStyle.hWidth = Number(this.flyStyle.hWidth.replace(/px/g,""));
+        }
 
         //计算 - 滚动条的宽度
         this.h = this.flyStyle.width;
@@ -80,13 +102,14 @@ export default {
           this.h = Number(this.h.substring(0, this.h.length - 2));
         }
         this.barH = this.h / this.flyStyle.hWidth * this.h;
-        this.barMoveNum = this.barH * 0.1;
+        this.barMoveNum = this.barH * 0.5;
 
         //计算 - dom可以移动的高度
         this.allh = this.flyStyle.hWidth - this.h;
         //计算 - dom可以移动占比
         this.moveZb = this.barMoveNum/(this.h - this.barH);
       }
+
 
     },
     //初始滚动插件基本样式
@@ -100,12 +123,33 @@ export default {
     },
     //滚动监听事件
     flyScroll(e){
-      // console.log(e)
+      //未超出的情况下无需滚动条及滚动功能
+      if(this.flyStyle.type == "vertical"){
+        if(this.h >= this.domH){
+          return;
+        }else{
+          e.preventDefault();
+        }
+      }else{
+        if(this.h >= this.flyStyle.hWidth){
+          return;
+        }else{
+          e.preventDefault();
+        }
+      }
+      //禁止重复的动画
+      if(this.animationTimeTag){
+        return;
+      }
+
+      //每次动画得时间
+      var _this = this;
+      setTimeout(function(){
+        _this.animationTimeTag = false;
+      },300);
 
       //滚动条移动
-      var tag = 0;
       if(e.deltaY > 0){
-        tag = -1;
         this.barMoveH += this.barMoveNum;
         this.domMoveH -= this.allh * this.moveZb;
         if((this.barH + this.barMoveH) >= this.h){
@@ -114,7 +158,6 @@ export default {
         }
 
       }else{
-        tag = 1;
         this.barMoveH -= this.barMoveNum;
         this.domMoveH += this.allh * this.moveZb;
         if(this.barMoveH <= 0){
@@ -123,25 +166,26 @@ export default {
         }
       }
 
+      this.animationTimeTag = true;
       if(this.flyStyle.type == "vertical"){
 
         Move.animation(this.barDom, {
           top: this.barMoveH + "px",
-        },10,tag)
+        },300)
 
         Move.animation(this.dom, {
           top: this.domMoveH + "px",
-        },10,tag)
+        },300)
 
       }else{
 
         Move.animation(this.barDom, {
           left: this.barMoveH + "px",
-        },10,tag)
+        },300)
 
         Move.animation(this.dom, {
           left: this.domMoveH + "px",
-        },10,tag)
+        },300)
       }
     },
 

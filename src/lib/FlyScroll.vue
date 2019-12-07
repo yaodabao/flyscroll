@@ -2,7 +2,8 @@
   <div class="fly-flyscroll"
     :style="'width:' + flyStyle.width +
           '; height:' + flyStyle.height"
-    @mousewheel="flyScroll"
+    @mousewheel.stop="flyScroll"
+    ref="fly_ksBox"
   >
 
     <!-- 纵向滚动 -->
@@ -11,13 +12,16 @@
           flyStyle.type == 'vertical'?(
             'width:' + flyStyle.barWidth +
             '; background-color:' + flyStyle.railColor +
-            ';right:' + flyStyle.barMarginRight
+            ';right:' + flyStyle.barMarginRight +
+            ';display: ' + (h < domH?'block':'none')
           ):(
             'width:' + flyStyle.width +
             ';height:' + flyStyle.barWidth +
             ';background-color:' + flyStyle.railColor +
-            ';bottom:' + flyStyle.barMarginRight
-          )"
+            ';bottom:' + flyStyle.barMarginRight +
+            ';display: ' + (h < flyStyle.hWidth?'block':'none')
+          )
+          "
       >
 
       <div class="fly-bar-scrollBut"
