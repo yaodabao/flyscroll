@@ -55,4 +55,4 @@ vOption:{
 ### 3.友情捐赠
 如果您觉得对您有帮助，您可以请我喝杯奶茶。
 
-![Image](https://raw.githubusercontent.com/yaodabao/flyscroll/master/static/wx_coffee.jpg)
+![Image](https://github.com/yaodabao/flyscroll/blob/master/static/wx_coffee.jpg)
