@@ -35,7 +35,7 @@ vOption:{
 
 ### 2.版本说明
 
-#### v1.1.6：
+#### v1.1.11：
 1.修复滚动扩散bug；
 
 #### v1.1.3：
@@ -53,5 +53,6 @@ vOption:{
 完成一个完整的插件开发流程，并且成功应用于项目，接下来就是插件核心内容的开发过程，敬请期待....
 
 ### 3.友情捐赠
-如果您觉得对您有帮助，您可以请我喝杯咖啡。
-![Image](./static/wx_coffee.jpg)
+如果您觉得对您有帮助，您可以请我喝杯奶茶。
+
+![Image](https://raw.githubusercontent.com/yaodabao/flyscroll/master/static/wx_coffee.jpg?token=AF2G6OYID2EZAQMO2RV3CH255Y55W)
