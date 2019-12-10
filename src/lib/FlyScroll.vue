@@ -40,15 +40,17 @@
 
     </div>
 
-    <div class="fly-conHtml"
+    <div class="fly-html"
       :style="flyStyle.type == 'vertical'?(
-            'width: calc(100% - '+flyStyle.barWidth+')'
-          ):(
-            'width: 100%'+
-            ';height: calc('+flyStyle.height+' - '+flyStyle.barWidth+')'
-          )"
-      ref="fly_conBox">
-      <slot></slot>
+              'width: calc(100% - '+flyStyle.barWidth+')'+
+              ';height: calc('+flyStyle.height+')'
+            ):(
+              'width: 100%'+
+              ';height: calc('+flyStyle.height+' - '+flyStyle.barWidth+')'
+            )" ref="fly_con">
+      <div class="fly-html-con" ref="fly_conBox">
+        <slot></slot>
+      </div>
     </div>
 
   </div>

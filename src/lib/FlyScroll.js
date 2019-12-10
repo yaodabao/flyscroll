@@ -42,17 +42,18 @@ export default {
     this.init();
   },
   created(){
-    //初始化新增监听
-    var _this = this;
-    window.onresize = function(){
-      // _this.$nextTick(()=>{
-      // });
-      _this.init();
+    // //初始化新增监听
+    // var _this = this;
+    // window.onresize = function(){
+    //   // _this.$nextTick(()=>{
+    //   // });
+    //   _this.init();
 
-    }
+    // }
   },
   watch:{
     dataChangeTag:function (){
+      this.initTag = false;
       this.init();
     }
   },
@@ -69,7 +70,6 @@ export default {
       //初始 - 计算
       this.dom = this.$refs.fly_conBox;
       this.barDom = this.$refs.fly_barHtml;
-
       if(this.flyStyle.type == "vertical"){
         // console.log(this.barDom.style)
         this.domH = this.dom.offsetHeight;
@@ -92,7 +92,6 @@ export default {
         this.moveZb = this.barMoveNum/(this.h - this.barH);
 
       }else{
-
         this.domW = this.dom.offsetWidth;
         if(this.flyStyle.hWidth.toString().indexOf("px") > -1){
           this.flyStyle.hWidth = Number(this.flyStyle.hWidth.replace(/px/g,""));
@@ -102,7 +101,7 @@ export default {
         this.h = this.flyStyle.width;
         //计算 - 数值为100% - 处理
         if(this.h.indexOf("%") >= 0){
-          this.h = this.domW * Number(this.h.replace(/%/g,"")) / 100;
+          this.h = this.$refs.fly_con.offsetWidth * Number(this.h.replace(/%/g,"")) / 100;
         }else if(this.h.indexOf("px") >= 0){
           this.h = Number(this.h.substring(0, this.h.length - 2));
         }

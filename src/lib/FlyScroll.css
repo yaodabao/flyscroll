@@ -41,7 +41,10 @@
   left: 0;
 }
 
-.fly-conHtml{
+.fly-html{
+  overflow: hidden;
+}
+.fly-html-con{
   position: absolute;
   top: 0;
   left: 0;

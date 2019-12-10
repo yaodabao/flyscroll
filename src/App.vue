@@ -3,7 +3,7 @@
     <div style="width: 80%; height: 100%; margin: 0 auto;">
       <FlyScroll :fStyle="hOption" :dataChangeTag="num">
         <div class="h">
-          <div>{{num}}我是测试内容，因此我需要占行</div>
+          <div>1我是测试内容，因此我需要占行</div>
           <div>2我是测试内容，因此我需要占行</div>
           <div>3我是测试内容，因此我需要占行</div>
           <div>4我是测试内容，因此我需要占行</div>
@@ -16,7 +16,7 @@
         </div>
 
       </FlyScroll>
-      <FlyScroll :fStyle="vOption">
+      <FlyScroll :fStyle="vOption" :dataChangeTag="num">
         <div class="v">
           <div>1我是测试内容，因此我需要占行</div>
           <div>2我是测试内容，因此我需要占行</div>
@@ -67,11 +67,13 @@ export default {
     }
   },
   created(){
+    this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
+    //初始化新增监听
     var _this = this;
-    setInterval(function(){
-      _this.num ++;
-      console.log(_this.num)
-    },2000)
+    window.onresize = function(){
+      _this.num++;
+      _this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
+    }
   },
 }
 </script>

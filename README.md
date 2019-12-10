@@ -33,14 +33,41 @@ vOption:{
 },
 ```
 
+#### 浏览器变化时触发插件，重绘
+
+```html
+<FlyScroll :fStyle="vOption" :dataChangeTag="num"></FlyScroll>
+```
+
+```
+created(){
+  this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
+  //初始化新增监听
+  var _this = this;
+  window.onresize = function(){
+    _this.num++;
+    _this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
+  }
+}
+```
+
+如有不明之处可参照App.vue（该文件随版本变动而变）。
+
 ### 2.参数说明
 
  参数  | 类型 | 说明
  ---- | ----- | -----
  fStyle  | Object | 组件基本样式
- dataChangeTag  | Number | 如果外部数据变化,则需要传递一个永久自增的数字,以便于我们重绘滚动条
+ dataChangeTag  | Number | （主动触发重绘滚动条）如果外部数据变化,则需要传递一个永久自增的数字,以便于我们重绘滚动条。
 
 ### 3.版本说明
+
+
+#### v1.1.18：
+1.修复浏览器大小变化，滚动条不联动变化问题；
+
+#### v1.1.17：
+1.修复滚动区域插槽父元素解构，初始化滚动条不显示问题；
 
 #### v1.1.15：
 1.修复组件内部数据更新后，滚动条未与之联动问题；
