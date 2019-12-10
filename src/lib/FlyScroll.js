@@ -36,6 +36,7 @@ export default {
   },
   props:{
     fStyle: Object, //样式
+    dataChangeTag: Number, //如果外部数据变化,则需要传递一个永久自增的数字,以便于我们重绘滚动条
   },
   mounted() {
     this.init();
@@ -48,6 +49,11 @@ export default {
       // });
       _this.init();
 
+    }
+  },
+  watch:{
+    dataChangeTag:function (){
+      this.init();
     }
   },
   methods:{
@@ -64,7 +70,6 @@ export default {
       this.dom = this.$refs.fly_conBox;
       this.barDom = this.$refs.fly_barHtml;
 
-        console.log(this.flyStyle.type)
       if(this.flyStyle.type == "vertical"){
         // console.log(this.barDom.style)
         this.domH = this.dom.offsetHeight;

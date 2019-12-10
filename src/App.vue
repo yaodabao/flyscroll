@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div style="width: 80%; height: 100%; margin: 0 auto;">
-      <FlyScroll :fStyle="hOption">
+      <FlyScroll :fStyle="hOption" :dataChangeTag="num">
         <div class="h">
-          <div>1我是测试内容，因此我需要占行</div>
+          <div>{{num}}我是测试内容，因此我需要占行</div>
           <div>2我是测试内容，因此我需要占行</div>
           <div>3我是测试内容，因此我需要占行</div>
           <div>4我是测试内容，因此我需要占行</div>
@@ -61,9 +61,17 @@ export default {
         railColor:"#eee",         //导轨颜色
         type: "vertical",         //默认:纵向(vertical),可设置为横向(horizontal).
         barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
-      }
+      },
 
+      num: 0,
     }
+  },
+  created(){
+    var _this = this;
+    setInterval(function(){
+      _this.num ++;
+      console.log(_this.num)
+    },2000)
   },
 }
 </script>
