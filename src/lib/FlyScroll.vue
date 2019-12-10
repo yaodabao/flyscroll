@@ -19,7 +19,7 @@
             ';height:' + flyStyle.barWidth +
             ';background-color:' + flyStyle.railColor +
             ';bottom:' + flyStyle.barMarginRight +
-            ';display: ' + (h < flyStyle.hWidth?'block':'none')
+            ';display: ' + (allh > 0?'block':'none')
           )
           "
       >

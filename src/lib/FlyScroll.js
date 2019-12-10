@@ -5,7 +5,7 @@ export default {
     return {
       flyStyle:{
         width: "100%",            //滚动区域 - 可视宽度
-        height: "300px",          //滚动区域 - 可视高度
+        height: "100%",           //滚动区域 - 可视高度
         barWidth:"0px",           //滚动条的宽度 必填
         barColor:"#666",          //滚动条颜色
         railColor:"#eee",         //导轨颜色
@@ -15,6 +15,8 @@ export default {
       },
 
       moveZb: 0,                  //移动占比
+
+      box:"",
 
       dom: "",                    //显示区域dom
       domW: 0,                    //dom的宽度;
@@ -42,24 +44,31 @@ export default {
     this.init();
   },
   created(){
-    // //初始化新增监听
-    // var _this = this;
-    // window.onresize = function(){
-    //   // _this.$nextTick(()=>{
-    //   // });
-    //   _this.init();
 
-    // }
+    //初始化新增监听
+    var _this = this;
+    window.onresize = function(){
+      _this.init();
+    }
   },
   watch:{
     dataChangeTag:function (){
       this.initTag = false;
-      this.init();
+      this.$nextTick(function () {
+        this.init();
+      })
     }
   },
+  // beforeDestroy() {
+  //   this.$refs.fly_ksBox.removeEventListener("resize",function(e){})
+  // },
   methods:{
     //初始化
     init() {
+      // this.$refs.fly_ksBox.addEventListener("resize",function(e){
+      //   this.init();
+      // })
+
       if(!this.initTag){
         //初始 - 滚动插件的配置参数
         this.initStyle();
@@ -68,18 +77,19 @@ export default {
 
 
       //初始 - 计算
+      this.box = this.$refs.fly_ksBox;
+
       this.dom = this.$refs.fly_conBox;
       this.barDom = this.$refs.fly_barHtml;
+
       if(this.flyStyle.type == "vertical"){
-        // console.log(this.barDom.style)
         this.domH = this.dom.offsetHeight;
-        // console.log(this.domH)
 
         //计算 - 滚动条的高
         //计算 - 数值为100% - 处理
         this.h = this.flyStyle.height;
         if(this.h.indexOf("%") >= 0){
-          this.h = document.documentElement.clientHeight * Number(this.h.replace(/%/g,"")) / 100;
+          this.h = this.box.offsetHeight * Number(this.h.replace(/%/g,"")) / 100;
         }else if(this.h.indexOf("px") >= 0){
           this.h = Number(this.h.substring(0, this.h.length - 2));
         }
@@ -93,23 +103,20 @@ export default {
 
       }else{
         this.domW = this.dom.offsetWidth;
-        if(this.flyStyle.hWidth.toString().indexOf("px") > -1){
-          this.flyStyle.hWidth = Number(this.flyStyle.hWidth.replace(/px/g,""));
-        }
 
         //计算 - 滚动条的宽度
         this.h = this.flyStyle.width;
         //计算 - 数值为100% - 处理
         if(this.h.indexOf("%") >= 0){
-          this.h = this.$refs.fly_con.offsetWidth * Number(this.h.replace(/%/g,"")) / 100;
+          this.h = this.box.offsetWidth * Number(this.h.replace(/%/g,"")) / 100;
         }else if(this.h.indexOf("px") >= 0){
           this.h = Number(this.h.substring(0, this.h.length - 2));
         }
-        this.barH = this.h / this.flyStyle.hWidth * this.h;
+        this.barH = this.h / this.domW * this.h;
         this.barMoveNum = this.barH * 0.5;
 
         //计算 - dom可以移动的高度
-        this.allh = this.flyStyle.hWidth - this.h;
+        this.allh = this.domW - this.h;
         //计算 - dom可以移动占比
         this.moveZb = this.barMoveNum/(this.h - this.barH);
       }

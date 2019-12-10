@@ -17,13 +17,26 @@ Vue.use(FlyScroll);
 ```
 
 ```html
-<FlyScroll :fStyle="vOption"></FlyScroll>
+<div style="width: 100%; height: 200px;">
+  <FlyScroll :fStyle="vOption">
+    <div class="v">
+      <div>1我是测试内容，因此我需要占行</div>
+      <div>2我是测试内容，因此我需要占行</div>
+      <div>3我是测试内容，因此我需要占行</div>
+      <div>4我是测试内容，因此我需要占行</div>
+      <div>5我是测试内容，因此我需要占行</div>
+      <div>6我是测试内容，因此我需要占行</div>
+      <div>7我是测试内容，因此我需要占行</div>
+      <div>8我是测试内容，因此我需要占行</div>
+      <div>9我是测试内容，因此我需要占行</div>
+      <div>10我是测试内容，因此我需要占行</div>
+    </div>
+  </FlyScroll>
+</div>
 ```
 
 ```js
 vOption:{
-  width: "100%",            //滚动区域 - 可视宽度（支持 %和px）
-  height: "300px",          //滚动区域 - 可视高度（支持 %和px）
   barWidth:"2px",           //滚动条的宽度 必填 建议：2~4个像素
   barColor:"#666",          //滚动条颜色
   railColor:"#eee",         //导轨颜色
@@ -33,25 +46,9 @@ vOption:{
 },
 ```
 
-#### 浏览器变化时触发插件，重绘
+#### 浏览器变化时
 
-```html
-<FlyScroll :fStyle="vOption" :dataChangeTag="num"></FlyScroll>
-```
-
-```
-created(){
-  this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
-  //初始化新增监听
-  var _this = this;
-  window.onresize = function(){
-    _this.num++;
-    _this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
-  }
-}
-```
-
-如有不明之处可参照App.vue（该文件随版本变动而变）。
+插件会自动监测浏览器变换，触发重绘。
 
 ### 2.参数说明
 
@@ -63,8 +60,9 @@ created(){
 ### 3.版本说明
 
 
-#### v1.1.18：
+#### v1.1.20：
 1.修复浏览器大小变化，滚动条不联动变化问题；
+2.修复组件内数据动态加载，无法自行联动滚动条变化问题；
 
 #### v1.1.17：
 1.修复滚动区域插槽父元素解构，初始化滚动条不显示问题；
