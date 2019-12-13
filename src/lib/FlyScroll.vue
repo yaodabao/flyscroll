@@ -35,7 +35,9 @@
            '; width:' + barH +
            'px; background-color:' + flyStyle.barColor
          )"
-         ref="fly_barHtml">
+         ref="fly_barHtml"
+         @mousedown="mouseD"
+         >
       </div>
 
     </div>

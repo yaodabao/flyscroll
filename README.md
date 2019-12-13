@@ -37,7 +37,7 @@ Vue.use(FlyScroll);
 
 ```js
 vOption:{
-  barWidth:"2px",           //滚动条的宽度 必填 建议：2~4个像素
+  barWidth:"2px",           //滚动条的宽度 必填 建议：鼠标点击拖动功能建议像素宽度为6~10像素
   barColor:"#666",          //滚动条颜色
   railColor:"#eee",         //导轨颜色
   barMargin:"0px",          //垂直滚动条距离整个容器右侧距离
@@ -59,6 +59,9 @@ vOption:{
 
 ### 3.版本说明
 
+
+#### v1.1.21：
+1.修复细节bug，并增加鼠标点击滚动条拖动滑动功能；
 
 #### v1.1.20：
 1.修复浏览器大小变化，滚动条不联动变化问题；
@@ -87,7 +90,11 @@ vOption:{
 #### v1.0.6：
 完成一个完整的插件开发流程，并且成功应用于项目，接下来就是插件核心内容的开发过程，敬请期待....
 
-### 4.友情捐赠
+### 4.Github
+
+[https://github.com/yaodabao/flyscroll](https://github.com/yaodabao/flyscroll)
+
+### 5.友情捐赠
 如果您觉得对您有帮助，您可以请我喝杯奶茶。
 
 ![Image](https://github.com/yaodabao/flyscroll/blob/master/static/wx_coffee.jpg)

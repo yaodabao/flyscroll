@@ -39,6 +39,7 @@
 .fly-bar.horizontal .fly-bar-scrollBut{
   top: 0;
   left: 0;
+  cursor: pointer;
 }
 
 .fly-html{

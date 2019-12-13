@@ -48,14 +48,14 @@ export default {
   data () {
     return {
       hOption: {
-        barWidth:"4px",          //滚动条的宽度
+        barWidth:"10px",          //滚动条的宽度
         barColor:"#000",          //滚动条颜色
         railColor:"#eee",         //导轨颜色
         barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
         type: "horizontal",         //默认:纵向(vertical),可设置为横向(horizontal)
       },
       vOption: {
-        barWidth:"4px",            //滚动条的宽度
+        barWidth:"10px",            //滚动条的宽度
         barColor:"#000",          //滚动条颜色
         railColor:"#eee",         //导轨颜色
         type: "vertical",         //默认:纵向(vertical),可设置为横向(horizontal).
@@ -87,7 +87,7 @@ export default {
           '<div>9我是测试内容，因此我需要占行</div>'+
           '<div>10我是测试内容，因此我需要占行</div>'+
         '</div>';
-      },5000)
+      },1000)
 
     // this.vOption.height = (document.documentElement.clientHeight - 200) + "px";
     // //初始化新增监听

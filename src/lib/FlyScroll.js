@@ -33,6 +33,11 @@ export default {
       initTag: false,             //动画效果计时器是否开启
       animationTimeTag: false,    //动画效果计时器是否开启
 
+      mouseD_Tag: -1,  //鼠标按下 - 标记
+      mouseX: 0,  //鼠标按下 - 初始X值
+      mouseY: 0,  //鼠标按下 - 初始Y值
+      mouseMX: 0, //鼠标移动 - X值
+      mouseMY: 0, //鼠标移动 - Y值
 
     }
   },
@@ -132,6 +137,135 @@ export default {
         _this.flyStyle[key] = _this.fStyle[key];
       });
     },
+    //鼠标 - 按下
+    mouseD(e){
+      e.preventDefault();
+
+      this.mouseX = e.x;
+      this.mouseY = e.y;
+      this.mouseD_Tag = 0;
+      document.addEventListener("mousemove",this.mouseM);
+      document.addEventListener("mouseup",this.mouseU);
+    },
+    //鼠标 - 移动
+    mouseM(e){
+      if(this.mouseD_Tag == 0 || this.mouseD_Tag == 1){
+        this.mouseD_Tag = 1;
+        this.mouseMX = e.x;
+        this.mouseMY = e.y;
+        // console.log(e)
+
+        var tempMove = 0;
+        var tempMoveD = 0;
+        //未超出的情况下无需滚动条及滚动功能
+        if(this.flyStyle.type == "vertical"){
+          //滚动条
+          tempMove = this.barMoveH + (this.mouseMY - this.mouseY);
+
+          //内容
+          var temp_bf = this.allh/(this.h - this.barH);
+          tempMoveD = this.domMoveH + (-1)*(this.mouseMY - this.mouseY)*temp_bf;
+
+          //超过 最大值
+          if((this.barH + tempMove) >= this.h){
+            tempMove = this.h - this.barH;
+            tempMoveD = (-1) * this.allh;
+          }
+          //小于 最小值
+          if(tempMove <= 0){
+            tempMove = 0;
+            tempMoveD = 0;
+          }
+
+          this.barDom.style.top = tempMove + "px";
+          this.dom.style.top = tempMoveD + "px";
+        }else{
+          //滚动条
+          tempMove = this.barMoveH + (this.mouseMX - this.mouseX);
+
+          //内容
+          var temp_bf = this.allh/(this.h - this.barH);
+          tempMoveD = this.domMoveH + (-1)*(this.mouseMX - this.mouseX)*temp_bf;
+
+          //超过 最大值
+          if((this.barH + tempMove) >= this.h){
+            tempMove = this.h - this.barH;
+            tempMoveD = (-1) * this.allh;
+          }
+          //小于 最小值
+          if(tempMove <= 0){
+            tempMove = 0;
+            tempMoveD = 0;
+          }
+
+          this.barDom.style.left = tempMove + "px";
+          this.dom.style.left = tempMoveD + "px";
+        }
+      }
+    },
+    //鼠标 - 弹起
+    mouseU(e){
+
+      if(this.mouseD_Tag == 0 || this.mouseD_Tag == 1){
+        var tempMove = 0;
+        var tempMoveD = 0;
+
+        if(this.flyStyle.type == "vertical"){
+          //滚动条
+          tempMove = this.barMoveH + (this.mouseMY - this.mouseY);
+
+          //内容
+          var temp_bf = this.allh/(this.h - this.barH);
+          tempMoveD = this.domMoveH + (-1)*(this.mouseMY - this.mouseY)*temp_bf;
+
+          //超过 最大值
+          if((this.barH + tempMove) >= this.h){
+            tempMove = this.h - this.barH;
+            tempMoveD = (-1) * this.allh;
+          }
+          //小于 最小值
+          if(tempMove <= 0){
+            tempMove = 0;
+            tempMoveD = 0;
+          }
+          this.barMoveH = tempMove;
+          this.domMoveH = tempMoveD;
+          this.barDom.style.top = this.barMoveH + "px";
+          this.dom.style.top = this.domMoveH + "px";
+        }else{
+          //滚动条
+          tempMove = this.barMoveH + (this.mouseMX - this.mouseX);
+
+          //内容
+          var temp_bf = this.allh/(this.h - this.barH);
+          tempMoveD = this.domMoveH + (-1)*(this.mouseMX - this.mouseX)*temp_bf;
+
+          //超过 最大值
+          if((this.barH + tempMove) >= this.h){
+            tempMove = this.h - this.barH;
+            tempMoveD = (-1) * this.allh;
+          }
+          //小于 最小值
+          if(tempMove <= 0){
+            tempMove = 0;
+            tempMoveD = 0;
+          }
+          this.barMoveH = tempMove;
+          this.domMoveH = tempMoveD;
+          this.barDom.style.left = this.barMoveH + "px";
+          this.dom.style.left = this.domMoveH + "px";
+        }
+
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.mouseMX = 0;
+        this.mouseMY = 0;
+        this.mouseD_Tag = -1;
+        document.removeEventListener("mousemove",this.mouseM);
+        document.removeEventListener("mouseup",this.mouseU);
+      }
+    },
+
     //滚动监听事件
     flyScroll(e){
       //未超出的情况下无需滚动条及滚动功能
