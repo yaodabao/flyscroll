@@ -2,7 +2,7 @@
   <div class="fly-flyscroll"
     :style="'width:' + flyStyle.width +
           '; height:' + flyStyle.height"
-    @mousewheel.stop="flyScroll"
+    @mousewheel.stop="mouseScroll"
     ref="fly_ksBox"
   >
 

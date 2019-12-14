@@ -205,7 +205,6 @@ export default {
     },
     //鼠标 - 弹起
     mouseU(e){
-
       if(this.mouseD_Tag == 0 || this.mouseD_Tag == 1){
         var tempMove = 0;
         var tempMoveD = 0;
@@ -267,7 +266,8 @@ export default {
     },
 
     //滚动监听事件
-    flyScroll(e){
+    mouseScroll(e){
+      this.init();
       //未超出的情况下无需滚动条及滚动功能
       if(this.flyStyle.type == "vertical"){
         if(this.h >= this.domH){
