@@ -1,7 +1,7 @@
 {
   "name": "flyscroll",
   "description": "一款自定义滚动条插件。",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "author": "yaolongfei <609560592@qq.com>",
   "license": "MIT",
   "private": false,

@@ -3,7 +3,7 @@
 .fly-flyscroll{
   overflow: hidden;
   position: relative;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .fly-bar{
@@ -11,7 +11,7 @@
   border-radius: 5px;
   position: absolute;
   overflow: hidden;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .fly-bar.vertical{
@@ -24,7 +24,7 @@
   background-color: #666;
   border-radius: 5px;
   position: absolute;
-  z-index: 10;
+  z-index: 1001;
 }
 .fly-bar.vertical .fly-bar-scrollBut{
   top: 0;
@@ -44,10 +44,11 @@
 
 .fly-html{
   overflow: hidden;
+  position: relative;
 }
 .fly-html-con{
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1001;
 }
