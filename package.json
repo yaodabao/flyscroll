@@ -1,7 +1,7 @@
 {
   "name": "flyscroll",
   "description": "一款自定义滚动条插件。",
-  "version": "1.2.1",
+  "version": "1.2.7",
   "author": "yaolongfei <609560592@qq.com>",
   "license": "MIT",
   "private": false,
@@ -28,7 +28,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^5.0.5",
+    "cross-env": "^5.2.1",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
     "vue-loader": "^13.0.5",

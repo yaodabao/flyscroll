@@ -20,7 +20,7 @@
 
         </FlyScroll>
       </div>
-      
+
       <div class="title">2.常规 - 横向滚动</div>
       <div style="width: 100%; height: 200px;">
         <FlyScroll :fStyle="hOption" :dataChangeTag="num">
@@ -38,8 +38,12 @@
           </div>
         </FlyScroll>
       </div>
-      
-      <div class="title">2.router-view - 动态数据</div>
+
+      <div class="title">3.router-view - 动态数据</div>
+      <div class="menu">
+        <router-link to="/">默认</router-link>
+        <router-link to="/other">other</router-link>
+      </div>
       <div style="width: 100%; height: 200px;">
         <FlyScroll :fStyle="test3">
           <router-view></router-view>

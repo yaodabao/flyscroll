@@ -70,16 +70,11 @@ export default {
   methods:{
     //初始化
     init() {
-      // this.$refs.fly_ksBox.addEventListener("resize",function(e){
-      //   this.init();
-      // })
-
       if(!this.initTag){
         //初始 - 滚动插件的配置参数
         this.initStyle();
       }
       this.initTag = true;
-
 
       //初始 - 计算
       this.box = this.$refs.fly_ksBox;
@@ -267,16 +262,19 @@ export default {
 
     //滚动监听事件
     mouseScroll(e){
-      this.init();
       //未超出的情况下无需滚动条及滚动功能
       if(this.flyStyle.type == "vertical"){
         if(this.h >= this.domH){
+          this.barMoveH = 0;
+          this.domMoveH = 0;
           return;
         }else{
           e.preventDefault();
         }
       }else{
         if(this.h >= this.flyStyle.hWidth){
+          this.barMoveH = 0;
+          this.domMoveH = 0;
           return;
         }else{
           e.preventDefault();
@@ -286,6 +284,7 @@ export default {
       if(this.animationTimeTag){
         return;
       }
+      this.init();
 
       //每次动画得时间
       var _this = this;
