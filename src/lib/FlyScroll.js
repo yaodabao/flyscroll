@@ -262,6 +262,7 @@ export default {
 
     //滚动监听事件
     mouseScroll(e){
+      this.init();
       //未超出的情况下无需滚动条及滚动功能
       if(this.flyStyle.type == "vertical"){
         if(this.h >= this.domH){
@@ -284,7 +285,6 @@ export default {
       if(this.animationTimeTag){
         return;
       }
-      this.init();
 
       //每次动画得时间
       var _this = this;

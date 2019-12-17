@@ -8,7 +8,8 @@
 
 ``` bash
 # 安装依赖
-npm install flyscroll --save
+yarn add flyscroll
+# npm install flyscroll --save
 
 # main.js 使用方式
 import FlyScroll from "flyscroll"
@@ -62,7 +63,7 @@ vOption:{
 ### 3.版本说明
 
 
-#### v1.2.7：
+#### v1.2.8：
 1.修复滚动条样式bug；
 
 #### v1.1.22：

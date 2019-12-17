@@ -12,19 +12,7 @@ export default {
   name: 'App',
   data () {
     return {
-      list: [
-        {
-          name:"张三111111111111",
-          age: 18,
-        },
-        {
-          name:"李四",
-          age: 18,
-        },
-        {
-          name:"王五",
-          age: 18,
-        }]
+      list: []
     }
   },
   created(){
