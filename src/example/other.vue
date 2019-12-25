@@ -40,7 +40,7 @@ export default {
       newList.forEach(function(item, i){
         _this.list.push(item)
       })
-    },2000)
+    },0)
   },
 }
 </script>

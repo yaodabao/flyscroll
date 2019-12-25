@@ -3,29 +3,16 @@
     <div style="width: 80%; height: 100%; margin: 0 auto;">
       <div class="title">1.常规 - 纵向滚动</div>
       <div style="width: 100%; height: 200px;">
-        <FlyScroll :fStyle="vOption" :dataChangeTag="num2">
-          <!-- <div class="v">
-            <div>{{num2}}我是测试内容，因此我需要占行</div>
-            <div>2我是测试内容，因此我需要占行</div>
-            <div>3我是测试内容，因此我需要占行</div>
-            <div>4我是测试内容，因此我需要占行</div>
-            <div>5我是测试内容，因此我需要占行</div>
-            <div>6我是测试内容，因此我需要占行</div>
-            <div>7我是测试内容，因此我需要占行</div>
-            <div>8我是测试内容，因此我需要占行</div>
-            <div>9我是测试内容，因此我需要占行</div>
-            <div>10我是测试内容，因此我需要占行</div>
-          </div> -->
+        <FlyScroll :fStyle="vOption">
           <div v-html="str"></div>
-
         </FlyScroll>
       </div>
 
       <div class="title">2.常规 - 横向滚动</div>
       <div style="width: 100%; height: 200px;">
-        <FlyScroll :fStyle="hOption" :dataChangeTag="num">
-          <div class="h">
-            <div>{{num2}}我是测试内容，因此我需要占行</div>
+        <FlyScroll :fStyle="hOption">
+          <div class="h" style="width: 2000px;">
+            <div>1我是测试内容，因此我需要占行</div>
             <div>2我是测试内容，因此我需要占行</div>
             <div>3我是测试内容，因此我需要占行</div>
             <div>4我是测试内容，因此我需要占行</div>
@@ -41,11 +28,11 @@
 
       <div class="title">3.router-view - 动态数据</div>
       <div class="menu">
-        <router-link to="/">默认</router-link>
-        <router-link to="/other">other</router-link>
+        <button @click="routerC('/')">默认</button>
+        <button @click="routerC('/other')">other</button>
       </div>
       <div style="width: 100%; height: 200px;">
-        <FlyScroll :fStyle="test3">
+        <FlyScroll :fStyle="test3" :dataChangeTag="routerCNum">
           <router-view></router-view>
         </FlyScroll>
       </div>
@@ -83,8 +70,7 @@ export default {
         barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
       },
 
-      num: 0,
-      num2: 0,
+      routerCNum: 0,
       str: '',
     }
   },
@@ -92,7 +78,6 @@ export default {
     var _this = this;
 
     setTimeout(function(){
-      _this.num2 ++;
       _this.str = '<div class="v">'+
         '<div>1我是测试内容，因此我需要占行</div>'+
         '<div>2我是测试内容，因此我需要占行</div>'+
@@ -108,6 +93,12 @@ export default {
     },1000)
 
   },
+  methods:{
+    routerC(url){
+      this.routerCNum ++;
+      this.$router.push({path: url});
+    },
+  }
 }
 </script>
 

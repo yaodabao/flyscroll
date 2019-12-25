@@ -8,8 +8,8 @@
 
 ``` bash
 # 安装依赖
-yarn add flyscroll
-# npm install flyscroll --save
+npm install flyscroll --save
+# yarn add flyscroll
 
 # main.js 使用方式
 import FlyScroll from "flyscroll"
@@ -18,33 +18,86 @@ Vue.use(FlyScroll);
 ```
 
 ```html
-<div style="width: 100%; height: 200px;">
-  <FlyScroll :fStyle="vOption">
-    <div class="v">
-      <div>1我是测试内容，因此我需要占行</div>
-      <div>2我是测试内容，因此我需要占行</div>
-      <div>3我是测试内容，因此我需要占行</div>
-      <div>4我是测试内容，因此我需要占行</div>
-      <div>5我是测试内容，因此我需要占行</div>
-      <div>6我是测试内容，因此我需要占行</div>
-      <div>7我是测试内容，因此我需要占行</div>
-      <div>8我是测试内容，因此我需要占行</div>
-      <div>9我是测试内容，因此我需要占行</div>
-      <div>10我是测试内容，因此我需要占行</div>
-    </div>
-  </FlyScroll>
-</div>
+<div class="title">1.常规 - 纵向滚动</div>
+  <div style="width: 100%; height: 200px;">
+    <FlyScroll :fStyle="vOption">
+      <!-- <div class="v">
+        <div>1我是测试内容，因此我需要占行</div>
+        <div>2我是测试内容，因此我需要占行</div>
+        <div>3我是测试内容，因此我需要占行</div>
+        <div>4我是测试内容，因此我需要占行</div>
+        <div>5我是测试内容，因此我需要占行</div>
+        <div>6我是测试内容，因此我需要占行</div>
+        <div>7我是测试内容，因此我需要占行</div>
+        <div>8我是测试内容，因此我需要占行</div>
+        <div>9我是测试内容，因此我需要占行</div>
+        <div>10我是测试内容，因此我需要占行</div>
+      </div> -->
+      <div v-html="str"></div>
+
+    </FlyScroll>
+  </div>
+
+  <div class="title">2.常规 - 横向滚动</div>
+  <div style="width: 100%; height: 200px;">
+    <FlyScroll :fStyle="hOption">
+      <div class="h" style="width: 2000px;">
+        <div>1我是测试内容，因此我需要占行</div>
+        <div>2我是测试内容，因此我需要占行</div>
+        <div>3我是测试内容，因此我需要占行</div>
+        <div>4我是测试内容，因此我需要占行</div>
+        <div>5我是测试内容，因此我需要占行</div>
+        <div>6我是测试内容，因此我需要占行</div>
+        <div>7我是测试内容，因此我需要占行</div>
+        <div>8我是测试内容，因此我需要占行</div>
+        <div>9我是测试内容，因此我需要占行</div>
+        <div>10我是测试内容，因此我需要占行</div>
+      </div>
+    </FlyScroll>
+  </div>
+
+  <div class="title">3.router-view - 动态数据</div>
+  <div class="menu">
+    <button @click="routerC('/')">默认</button>
+    <button @click="routerC('/other')">other</button>
+  </div>
+  <div style="width: 100%; height: 200px;">
+    <FlyScroll :fStyle="test3" :dataChangeTag="routerCNum">
+      <router-view></router-view>
+    </FlyScroll>
+  </div>
 ```
 
 ```js
-vOption:{
-  barWidth:"2px",           //滚动条的宽度 必填 建议：鼠标点击拖动功能建议像素宽度为6~10像素
-  barColor:"#666",          //滚动条颜色
-  railColor:"#eee",         //导轨颜色
-  barMargin:"0px",          //垂直滚动条距离整个容器右侧距离
-  type: "vertical",         //滚动条类型,纵向滚动和水平滚动 默认:纵向(vertical),可设置为横向(horizontal).
-  hWidth: "0px",            //可移动区域的宽度 type: "horizontal" 必填
-},
+
+  data () {
+    return {
+      test3: {
+        barWidth:"10px",            //滚动条的宽度
+        barColor:"#000",          //滚动条颜色
+        railColor:"#eee",         //导轨颜色
+        type: "vertical",         //默认:纵向(vertical),可设置为横向(horizontal).
+        barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
+      },
+      hOption: {
+        barWidth:"10px",          //滚动条的宽度
+        barColor:"#000",          //滚动条颜色
+        railColor:"#eee",         //导轨颜色
+        barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
+        type: "horizontal",         //默认:纵向(vertical),可设置为横向(horizontal)
+      },
+      vOption: {
+        barWidth:"10px",            //滚动条的宽度
+        barColor:"#000",          //滚动条颜色
+        railColor:"#eee",         //导轨颜色
+        type: "vertical",         //默认:纵向(vertical),可设置为横向(horizontal).
+        barMargin:"0px",         //垂直滚动条距离整个容器右侧距离单位（px）
+      },
+
+      routerCNum: 0,
+      str: '',
+    }
+  },
 ```
 
 注：具体Dome，参考src下App.vue。
@@ -63,41 +116,9 @@ vOption:{
 ### 3.版本说明
 
 
-#### v1.2.8：
-1.修复滚动条样式bug；
+#### v1.2.14：
+1.插件重构，并优化；
 
-#### v1.1.22：
-1.解决组件内部router-view内部页面数据变化，无法重绘滚动条问题；
-
-#### v1.1.21：
-1.修复细节bug，并增加鼠标点击滚动条拖动滑动功能；
-
-#### v1.1.20：
-1.修复浏览器大小变化，滚动条不联动变化问题；
-2.修复组件内数据动态加载，无法自行联动滚动条变化问题；
-
-#### v1.1.17：
-1.修复滚动区域插槽父元素解构，初始化滚动条不显示问题；
-
-#### v1.1.15：
-1.修复组件内部数据更新后，滚动条未与之联动问题；
-
-#### v1.1.14：
-1.修复滚动扩散bug；
-
-#### v1.1.3：
-1.修复滚动抖动问题；
-2.修复浏览器大小变化，不重新加载滚动条bug；
-3.修复其他细节问题；
-
-#### v1.1.2：
-修复无法使用问题。
-
-#### v1.1.0：
-基本自定义滚动条功能完成。
-
-#### v1.0.6：
-完成一个完整的插件开发流程，并且成功应用于项目，接下来就是插件核心内容的开发过程，敬请期待....
 
 ### 4.Github
 
